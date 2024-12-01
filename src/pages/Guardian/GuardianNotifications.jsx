@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Notifications = () => {
+const GuardianNotifications = () => {
   const [notifications, setNotifications] = useState([
     {
       id: 1,
@@ -69,4 +69,4 @@ const Notifications = () => {
   );
 };
 
-export default Notifications;
+export default GuardianNotifications;

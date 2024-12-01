@@ -1,10 +1,10 @@
 import React from 'react';
-import teamLeaderImage from '../assets/jhorne.jpg';
-import frontendDevImage from '../assets/lessa.jpg';
-import backendDevImage from '../assets/jhorne.jpg';
-import researcherImage from '../assets/era.jpg';
+import teamLeaderImage from '../../assets/jhorne.jpg';
+import frontendDevImage from '../../assets/lessa.jpg';
+import backendDevImage from '../../assets/jhorne.jpg';
+import researcherImage from '../../assets/era.jpg';
 
-const AboutUs = () => {
+const GuardianAboutUs = () => {
   return (
     <div className="flex flex-col items-center bg-green-50 min-h-screen py-10 px-6">
       <h1 className="text-4xl font-extrabold text-green-700 mb-6 text-center">About Us</h1>
@@ -91,4 +91,4 @@ const AboutUs = () => {
   );
 };
 
-export default AboutUs;
+export default GuardianAboutUs;

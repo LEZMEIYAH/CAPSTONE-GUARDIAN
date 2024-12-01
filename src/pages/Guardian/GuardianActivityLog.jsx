@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { format } from 'date-fns'; // Importing date-fns for better date formatting
 
-const ActivityLog = () => {
+const GuardianActivityLog = () => {
   const [activities, setActivities] = useState([]);
   const [loading, setLoading] = useState(true); // Loading state
   const [error, setError] = useState(null); // Error state
@@ -76,4 +76,4 @@ const ActivityLog = () => {
   );
 };
 
-export default ActivityLog;
+export default GuardianActivityLog;

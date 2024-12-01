@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Chat = () => {
+const GuardianChat = () => {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
 
@@ -66,4 +66,4 @@ const Chat = () => {
   );
 };
 
-export default Chat;
+export default GuardianChat;

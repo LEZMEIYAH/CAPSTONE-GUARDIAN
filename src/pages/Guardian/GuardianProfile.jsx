@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Profile = () => {
+const GuardianProfile = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({
     firstName: 'Lessa Mae',
@@ -228,4 +228,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default GuardianProfile;

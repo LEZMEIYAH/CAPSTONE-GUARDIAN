@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { IoArrowBack } from 'react-icons/io5'; // Import the back arrow icon
 
-const API_BASE_URL = 'http://127.0.0.1:8000/api/'; // Replace with your Django backend URL if different
-
-const RequestAppointment = () => {
+const GuardianRequestAppointment = () => {
+  const navigate = useNavigate(); // React Router hook for navigation
   const [formData, setFormData] = useState({
     patient_name: '',
     email: '',
     date: '',
     time: '',
-    description: ''
+    description: '',
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -26,14 +27,14 @@ const RequestAppointment = () => {
     setSuccess(false);
 
     try {
-      const response = await axios.post(`${API_BASE_URL}appointments/`, formData);
+      await axios.post('/api/appointments/', formData);
       setSuccess(true);
       setFormData({
         patient_name: '',
         email: '',
         date: '',
         time: '',
-        description: ''
+        description: '',
       });
     } catch (error) {
       console.error('Failed to request appointment:', error.response ? error.response.data : error.message);
@@ -44,15 +45,26 @@ const RequestAppointment = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 to-green-100 flex flex-col items-center p-6">
+    <div className="flex flex-col items-center justify-center min-h-screen p-8 bg-gradient-to-br from-green-50 to-green-100 relative">
+      {/* Back Button */}
+      <button
+        onClick={() => navigate(-1)} // Navigate back to the previous page
+        className="absolute top-4 left-4 w-8 h-8 flex items-center justify-center bg-green-600 text-white rounded-full shadow-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 z-10"
+      >
+        <IoArrowBack className="text-lg" /> {/* Smaller icon */}
+      </button>
+
+      {/* Header Section */}
+      <h1 className="text-4xl font-extrabold text-green-700 mb-4">Request Appointment</h1>
       <p className="text-gray-600 text-center max-w-lg mb-8">
         Fill out the form below to request an appointment. We’ll get back to you as soon as possible.
       </p>
+
+      {/* Form Section */}
       <form
         onSubmit={handleSubmit}
         className="w-full max-w-3xl bg-white p-8 rounded-lg shadow-lg space-y-6 grid grid-cols-1 sm:grid-cols-2 gap-6"
       >
-        {/* Patient Name */}
         <div className="flex flex-col">
           <label htmlFor="patient_name" className="text-sm font-medium text-gray-700">
             Patient Name
@@ -68,8 +80,6 @@ const RequestAppointment = () => {
             className="mt-1 p-3 border-2 border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all duration-300"
           />
         </div>
-
-        {/* Email Address */}
         <div className="flex flex-col">
           <label htmlFor="email" className="text-sm font-medium text-gray-700">
             Email Address
@@ -85,8 +95,6 @@ const RequestAppointment = () => {
             className="mt-1 p-3 border-2 border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all duration-300"
           />
         </div>
-
-        {/* Appointment Date */}
         <div className="flex flex-col">
           <label htmlFor="date" className="text-sm font-medium text-gray-700">
             Appointment Date
@@ -101,8 +109,6 @@ const RequestAppointment = () => {
             className="mt-1 p-3 border-2 border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all duration-300"
           />
         </div>
-
-        {/* Appointment Time */}
         <div className="flex flex-col">
           <label htmlFor="time" className="text-sm font-medium text-gray-700">
             Appointment Time
@@ -117,8 +123,6 @@ const RequestAppointment = () => {
             className="mt-1 p-3 border-2 border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all duration-300"
           />
         </div>
-
-        {/* Description */}
         <div className="flex flex-col sm:col-span-2">
           <label htmlFor="description" className="text-sm font-medium text-gray-700">
             Description
@@ -134,8 +138,6 @@ const RequestAppointment = () => {
             className="mt-1 p-3 border-2 border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all duration-300"
           ></textarea>
         </div>
-
-        {/* Submit Button */}
         <div className="sm:col-span-2">
           <button
             type="submit"
@@ -145,17 +147,11 @@ const RequestAppointment = () => {
             {loading ? 'Submitting...' : 'Submit Request'}
           </button>
         </div>
-
-        {/* Error or Success Messages */}
         {error && <p className="text-red-600 text-center">{error}</p>}
-        {success && (
-          <p className="text-green-600 text-center">
-            Appointment requested successfully! We will get back to you soon.
-          </p>
-        )}
+        {success && <p className="text-green-600 text-center">Appointment requested successfully!</p>}
       </form>
     </div>
   );
 };
 
-export default RequestAppointment;
+export default GuardianRequestAppointment;

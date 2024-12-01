@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Settings = () => {
+const GuardianSettings = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({
     firstName: 'Lessa Mae',
@@ -215,4 +215,4 @@ const Settings = () => {
   );
 };
 
-export default Settings;
+export default GuardianSettings;

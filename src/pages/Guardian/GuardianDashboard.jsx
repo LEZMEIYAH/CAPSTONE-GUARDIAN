@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { CalendarIcon } from '@heroicons/react/24/outline'; // For Heroicons v2
 import { PhoneIcon, PencilIcon } from '@heroicons/react/24/outline'; // Additional icons
 
-const Dashboard = () => {
+const GuardianDashboard = () => {
   const [appointments, setAppointments] = useState([]);
   const navigate = useNavigate();
 
@@ -99,4 +99,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default GuardianDashboard;

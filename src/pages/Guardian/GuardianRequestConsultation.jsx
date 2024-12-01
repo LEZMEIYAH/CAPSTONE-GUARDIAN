@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { IoArrowBack } from 'react-icons/io5'; // Import the back arrow icon
 
 const API_BASE_URL = 'http://127.0.0.1:8000/api/'; // Replace with your Django backend URL if different
 
-const RequestConsultation = () => {
+const GuardianRequestConsultation = () => {
+  const navigate = useNavigate(); // Initialize navigate
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -44,7 +47,15 @@ const RequestConsultation = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 to-green-100 flex flex-col items-center p-6">
+    <div className="min-h-screen bg-gradient-to-br from-green-50 to-green-100 flex flex-col items-center p-6 relative">
+      {/* Back Button */}
+      <button
+        onClick={() => navigate(-1)} // Navigate back to the previous page
+        className="absolute top-4 left-4 w-8 h-8 flex items-center justify-center bg-green-600 text-white rounded-full shadow-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 z-10"
+      >
+        <IoArrowBack className="text-lg" />
+      </button>
+
       <p className="text-gray-600 text-center max-w-lg mb-8">
         Fill out the form below to request a consultation. We'll get back to you as soon as possible.
       </p>
@@ -161,4 +172,4 @@ const RequestConsultation = () => {
   );
 };
 
-export default RequestConsultation;
+export default GuardianRequestConsultation;
